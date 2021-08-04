@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="alander" id="alander_001_initial_widget_list">
+        <createSequence sequenceName="WIDGETS_SEQUENCE" startValue="1" incrementBy="1"/>
+        <createTable remarks="Виджеты" tableName="WIDGETS">
+            <column name="ID"                               type="bigint"
+            	defaultValueComputed="nextval('WIDGETS_SEQUENCE')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE"                           type="varchar(64)"      remarks="Код"/>
+            <column name="NAME"                           type="varchar(64)"     remarks="Название"/>
+            <column name="COMPONENT"                      type="varchar(128)"     remarks="Комопнент"/>
+        </createTable>
+
+        <addPrimaryKey columnNames="ID"
+                       constraintName="PK_WIDGETS"
+                       tableName="WIDGETS"/>
+
+        <loadData tableName="WIDGETS" relativeToChangelogFile="true" file="../data/widgets.csv" encoding="UTF-8" separator=";"/>
+
+    </changeSet>
+</databaseChangeLog>
