@@ -11,15 +11,15 @@ import ru.egartech.workplace.repo.WidgetRepository;
 @Service
 public class WidgetServiceImpl implements WidgetService {
 
-	private final WidgetRepository widgetRepostory;
+	private final WidgetRepository widgetRepository;
 	
-	WidgetServiceImpl(WidgetRepository widgetRepostory) {
-		this.widgetRepostory = widgetRepostory;
+	WidgetServiceImpl(WidgetRepository widgetRepository) {
+		this.widgetRepository = widgetRepository;
 	}
 	
 	@Override
 	public Page<WidgetDTO> getAll(Pageable page) {
-		return widgetRepostory.findAll(page).map(WidgetConverter::toDTO);
+		return widgetRepository.findAll(page).map(WidgetConverter::toDTO);
 	}
 
 }
