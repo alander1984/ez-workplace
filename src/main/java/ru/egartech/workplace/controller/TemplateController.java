@@ -33,19 +33,19 @@ public class TemplateController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> save(TemplateDTO t) {
+    public ResponseEntity<String> save(@RequestBody TemplateDTO t) {
         templateService.save(t);
         return ResponseEntity.ok("Added template: " + t.toString());
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> delete(TemplateDTO t) {
+    public ResponseEntity<String> delete(@RequestBody TemplateDTO t) {
         templateService.delete(t);
         return ResponseEntity.ok("Template deleted: " + t.toString());
     }
 
     @PostMapping("/update")
-    public ResponseEntity<String> update(TemplateDTO t) {
+    public ResponseEntity<String> update(@RequestBody TemplateDTO t) {
         TemplateDTO oldTemplate = templateService.getById(t.getId());
         templateService.update(t);
         return ResponseEntity.ok("Template updated: " + oldTemplate.toString() + " -> " + templateService.getById(t.getId()));

@@ -26,13 +26,16 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public void save(TemplateDTO t) {
-        if (t != null)
+        if (t != null) {
             templateRepository.save(TemplateConverter.toDomain(t));
+        }
     }
 
     @Override
     public void delete(TemplateDTO t) {
-        templateRepository.delete(TemplateConverter.toDomain(t));
+        if (getById(t.getId()) != null) {
+            templateRepository.delete(TemplateConverter.toDomain(t));
+        }
     }
 
     @Override
@@ -42,6 +45,8 @@ public class TemplateServiceImpl implements TemplateService {
         template.setCode(t.getCode());
         template.setName(t.getName());
         template.setComponent(t.getComponent());
+
+        save(template);
     }
 
 }
