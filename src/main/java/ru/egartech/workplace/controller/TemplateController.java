@@ -29,25 +29,26 @@ public class TemplateController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TemplateDTO> getById(@PathVariable long id) {
-        return ResponseEntity.ok(templateService.getById(id));
+        return ResponseEntity.ok(templateService.getById(id).get());
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<String> save(@RequestBody TemplateDTO t) {
         templateService.save(t);
         return ResponseEntity.ok("Added template: " + t.toString());
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> delete(@RequestBody TemplateDTO t) {
-        templateService.delete(t);
-        return ResponseEntity.ok("Template deleted: " + t.toString());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable long id) {
+        TemplateDTO oldTemplate = templateService.getById(id).get();
+        templateService.delete(id);
+        return ResponseEntity.ok("Template deleted: " + oldTemplate);
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public ResponseEntity<String> update(@RequestBody TemplateDTO t) {
-        TemplateDTO oldTemplate = templateService.getById(t.getId());
+        TemplateDTO oldTemplate = templateService.getById(t.getId()).get();
         templateService.update(t);
-        return ResponseEntity.ok("Template updated: " + oldTemplate.toString() + " -> " + templateService.getById(t.getId()));
+        return ResponseEntity.ok("Template updated: " + oldTemplate + " -> " + templateService.getById(t.getId()));
     }
 }

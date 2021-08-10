@@ -7,6 +7,8 @@ import ru.egartech.workplace.converter.TemplateConverter;
 import ru.egartech.workplace.dto.TemplateDTO;
 import ru.egartech.workplace.repo.TemplateRepository;
 
+import java.util.Optional;
+
 @Service
 public class TemplateServiceImpl implements TemplateService {
 
@@ -20,8 +22,12 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public TemplateDTO getById(long id) {
-        return TemplateConverter.toDTO(templateRepository.findById(id).orElseThrow(RuntimeException::new));
+    public Optional<TemplateDTO> getById(long id) {
+        if (templateRepository.findById(id).isPresent()) {
+            return Optional.ofNullable(TemplateConverter.toDTO(templateRepository.findById(id).get()));
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -32,21 +38,21 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public void delete(TemplateDTO t) {
-        if (getById(t.getId()) != null) {
-            templateRepository.delete(TemplateConverter.toDomain(t));
+    public void delete(long id) {
+        if (getById(id).isPresent()) {
+            templateRepository.deleteById(id);
         }
     }
 
     @Override
     public void update(TemplateDTO t) {
-        TemplateDTO template = getById(t.getId());
-
-        template.setCode(t.getCode());
-        template.setName(t.getName());
-        template.setComponent(t.getComponent());
-
-        save(template);
+        if (getById(t.getId()).isPresent()) {
+            TemplateDTO template = getById(t.getId()).get();
+            template.setCode(t.getCode());
+            template.setName(t.getName());
+            template.setComponent(t.getComponent());
+            save(template);
+        }
     }
 
 }

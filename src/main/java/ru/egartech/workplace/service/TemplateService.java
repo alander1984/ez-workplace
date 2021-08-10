@@ -4,12 +4,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import ru.egartech.workplace.dto.TemplateDTO;
 
+import java.util.Optional;
+
 public interface TemplateService {
 
     Page<TemplateDTO> getAll(Pageable page);
-    TemplateDTO getById(long id);
+    Optional<TemplateDTO> getById(long id);
     void save(TemplateDTO t);
-    void delete(TemplateDTO t);
+    void delete(long id);
     void update(TemplateDTO t);
 
 }
