@@ -42,13 +42,13 @@ public class TemplateController {
     public ResponseEntity<String> delete(@PathVariable long id) {
         TemplateDTO oldTemplate = templateService.getById(id).get();
         templateService.delete(id);
-        return ResponseEntity.ok("Template deleted: " + oldTemplate);
+        return ResponseEntity.ok("Deleted template: " + oldTemplate);
     }
 
     @PutMapping
     public ResponseEntity<String> update(@RequestBody TemplateDTO t) {
         TemplateDTO oldTemplate = templateService.getById(t.getId()).get();
         templateService.update(t);
-        return ResponseEntity.ok("Template updated: " + oldTemplate + " -> " + templateService.getById(t.getId()));
+        return ResponseEntity.ok("Updated template: " + oldTemplate + " -> " + templateService.getById(t.getId()));
     }
 }

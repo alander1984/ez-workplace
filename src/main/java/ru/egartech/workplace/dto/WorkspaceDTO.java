@@ -7,9 +7,8 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class TemplateDTO {
-        private Long id;
-        private String code;
-        private String name;
-        private String component;
+public class WorkspaceDTO {
+    private long id;
+    private String name;
+    private long templateId;
 }

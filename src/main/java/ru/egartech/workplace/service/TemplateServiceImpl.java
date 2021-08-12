@@ -7,6 +7,7 @@ import ru.egartech.workplace.converter.TemplateConverter;
 import ru.egartech.workplace.dto.TemplateDTO;
 import ru.egartech.workplace.repo.TemplateRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -23,11 +24,8 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Optional<TemplateDTO> getById(long id) {
-        if (templateRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(TemplateConverter.toDTO(templateRepository.findById(id).get()));
-        } else {
-            return Optional.empty();
-        }
+            return Optional.of(TemplateConverter.toDTO(templateRepository.findById(id)
+                    .orElseThrow(EntityNotFoundException::new)));
     }
 
     @Override
@@ -39,9 +37,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public void delete(long id) {
-        if (getById(id).isPresent()) {
-            templateRepository.deleteById(id);
-        }
+        templateRepository.deleteById(id);
     }
 
     @Override
