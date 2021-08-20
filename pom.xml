@@ -12,7 +12,7 @@
 	<artifactId>workplace</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>workplace</name>
-	<description>Backend for workplace manegement</description>
+	<description>Backend for workplace management</description>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
