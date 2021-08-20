@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="lanretipmes" id="lanretipmes_004_create_wplaceholders_table">
+        <createSequence sequenceName="WPLACEHOLDERS_SEQUENCE" startValue="1" incrementBy="1"/>
+        <createTable remarks="" tableName="WPLACEHOLDERS">
+            <column name="ID"                               type="bigint"
+                    defaultValueComputed="nextval('WPLACEHOLDERS_SEQUENCE')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WORKSPACE_ID"                     type="bigint"     remarks=""/>
+            <column name="WIDGET_ID"                      type="bigint"     remarks=""/>
+            <column name="CODE"                           type="varchar(64)"      remarks=""/>
+        </createTable>
+
+        <addPrimaryKey columnNames="ID"
+                       constraintName="PK_WPLACEHOLDERS"
+                       tableName="WPLACEHOLDERS"/>
+        <addForeignKeyConstraint baseTableName="WPLACEHOLDERS"
+                                 baseColumnNames="WORKSPACE_ID"
+                                 constraintName="FK_WORKSPACES"
+                                 referencedTableName="WORKSPACES"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="WPLACEHOLDERS"
+                                 baseColumnNames="WIDGET_ID"
+                                 constraintName="FK_WIDGETS"
+                                 referencedTableName="WIDGETS"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="WPLACEHOLDERS" relativeToChangelogFile="true" file="../data/wplaceholders.csv" encoding="UTF-8" separator=";"/>
+
+    </changeSet>
+</databaseChangeLog>

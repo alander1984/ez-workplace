@@ -7,9 +7,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class WidgetDTO {
-    private Long id;
-    private String code;
-    private String name;
-    private String component;
+public class WSettingsDTO {
+
+    private long id;
+    private long wPlaceholderId;
+    private long propertyId;
+    private String value;
+
 }

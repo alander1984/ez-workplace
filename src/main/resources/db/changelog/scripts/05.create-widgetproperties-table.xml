@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="lanretipmes" id="lanretipmes_005_create_widgetproperties_table">
+        <createSequence sequenceName="WIDGET_PROPERTIES_SEQUENCE" startValue="1" incrementBy="1"/>
+        <createTable remarks="???????" tableName="WIDGET_PROPERTIES">
+            <column name="ID"                               type="bigint"
+                    defaultValueComputed="nextval('WIDGET_PROPERTIES_SEQUENCE')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARAM"                           type="varchar(64)"     remarks=""/>
+            <column name="NAME"                           type="varchar(64)"     remarks=""/>
+            <column name="WIDGET_ID"                      type="bigint"     remarks=""/>
+        </createTable>
+
+        <addPrimaryKey columnNames="ID"
+                       constraintName="PK_WIDGET_PROPERTIES"
+                       tableName="WIDGET_PROPERTIES"/>
+        <addForeignKeyConstraint baseTableName="WIDGET_PROPERTIES"
+                                 baseColumnNames="WIDGET_ID"
+                                 constraintName="FK_WIDGETS2"
+                                 referencedTableName="WIDGETS"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="WIDGET_PROPERTIES" relativeToChangelogFile="true" file="../data/widgetproperties.csv" encoding="UTF-8" separator=";"/>
+
+    </changeSet>
+</databaseChangeLog>

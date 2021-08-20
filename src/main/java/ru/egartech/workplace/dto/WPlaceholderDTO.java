@@ -7,9 +7,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class WidgetDTO {
-    private Long id;
+public class WPlaceholderDTO {
+
+    private long id;
+    private long workspaceId;
+    private long widgetId;
     private String code;
-    private String name;
-    private String component;
+
 }

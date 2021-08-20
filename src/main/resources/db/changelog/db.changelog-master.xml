@@ -6,5 +6,8 @@
     <include file="scripts/01.initial.xml" relativeToChangelogFile="true"/>
     <include file="scripts/02.create-template-table.xml" relativeToChangelogFile="true"/>
     <include file="scripts/03.create-workspaces-table.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/04.create-wplaceholders-table.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/05.create-widgetproperties-table.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/06.create-wsettings-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -2,9 +2,8 @@ package ru.egartech.workplace.repo;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
-import ru.egartech.workplace.domain.Widget;
+import ru.egartech.workplace.domain.WPlaceholder;
 
 @Repository
-public interface WidgetRepository extends PagingAndSortingRepository<Widget, Long> {
-
+public interface WPlaceholderRepository extends PagingAndSortingRepository<WPlaceholder, Long> {
 }

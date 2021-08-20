@@ -18,7 +18,7 @@ public class WorkspaceController {
 
     WorkspaceController (WorkspaceServiceImpl workspaceService) { this.workspaceService = workspaceService; }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<Page<WorkspaceDTO>> getAll(
             @RequestParam(value = "size", defaultValue = "100") int size,
             @RequestParam(value = "page", defaultValue = "0") int page) {

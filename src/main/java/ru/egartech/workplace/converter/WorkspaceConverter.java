@@ -1,8 +1,6 @@
 package ru.egartech.workplace.converter;
 
-import ru.egartech.workplace.domain.Widget;
 import ru.egartech.workplace.domain.Workspace;
-import ru.egartech.workplace.dto.WidgetDTO;
 import ru.egartech.workplace.dto.WorkspaceDTO;
 
 public class WorkspaceConverter {

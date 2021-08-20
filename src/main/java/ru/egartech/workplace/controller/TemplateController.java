@@ -18,7 +18,7 @@ public class TemplateController {
 
     TemplateController(TemplateService templateService) { this.templateService = templateService; }
 
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<Page<TemplateDTO>> getAll(
             @RequestParam(value = "size", defaultValue = "100") int size,
             @RequestParam(value = "page", defaultValue = "0") int page) {

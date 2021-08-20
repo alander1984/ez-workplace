@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="lanretipmes" id="lanretipmes_006_create_wsettings_table">
+        <createSequence sequenceName="WSETTINGS_SEQUENCE" startValue="1" incrementBy="1"/>
+        <createTable remarks="" tableName="WSETTINGS">
+            <column name="ID"                               type="bigint"
+                    defaultValueComputed="nextval('WSETTINGS_SEQUENCE')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WPLACEHOLDER_ID"                     type="bigint"     remarks=""/>
+            <column name="PROPERTY_ID"                      type="bigint"     remarks=""/>
+            <column name="VALUE"                           type="varchar(64)"      remarks=""/>
+        </createTable>
+
+        <addPrimaryKey columnNames="ID"
+                       constraintName="PK_WSETTINGS"
+                       tableName="WSETTINGS"/>
+        <addForeignKeyConstraint baseTableName="WSETTINGS"
+                                 baseColumnNames="WPLACEHOLDER_ID"
+                                 constraintName="FK_WPLACEHOLDERS"
+                                 referencedTableName="WPLACEHOLDERS"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="WSETTINGS"
+                                 baseColumnNames="PROPERTY_ID"
+                                 constraintName="FK_WIDGET_PROPERTIES"
+                                 referencedTableName="WIDGET_PROPERTIES"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="WSETTINGS" relativeToChangelogFile="true" file="../data/wsettings.csv" encoding="UTF-8" separator=";"/>
+
+    </changeSet>
+</databaseChangeLog>
