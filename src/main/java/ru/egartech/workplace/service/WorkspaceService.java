@@ -10,7 +10,7 @@ public interface WorkspaceService {
 
     Page<WorkspaceDTO> getAll(Pageable page);
     Optional<WorkspaceDTO> getById(long id);
-    void save(WorkspaceDTO w);
+    WorkspaceDTO save(WorkspaceDTO w);
     void delete(long id);
     void update(WorkspaceDTO w);
 }

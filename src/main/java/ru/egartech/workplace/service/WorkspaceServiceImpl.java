@@ -34,10 +34,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void save(WorkspaceDTO w) {
+    public WorkspaceDTO save(WorkspaceDTO w) {
         if (w != null) {
-            workspaceRepository.save(WorkspaceConverter.toDomain(w));
+            return WorkspaceConverter.toDTO(workspaceRepository.save(WorkspaceConverter.toDomain(w)));
         }
+        return null;
     }
 
     @Override

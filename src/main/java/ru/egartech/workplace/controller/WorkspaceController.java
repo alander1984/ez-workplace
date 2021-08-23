@@ -34,8 +34,8 @@ public class WorkspaceController {
 
     @PostMapping
     public ResponseEntity<String> save(@RequestBody WorkspaceDTO w) {
-        workspaceService.save(w);
-        return ResponseEntity.ok("Added workspace: " + w.toString());
+        WorkspaceDTO newWorkspace = workspaceService.save(w);
+        return ResponseEntity.ok("Added workspace: " + newWorkspace.toString());
     }
 
     @DeleteMapping("/{id}")
