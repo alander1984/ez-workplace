@@ -34,10 +34,11 @@ public class WSettingsServiceImpl implements WSettingsService{
     }
 
     @Override
-    public void save(WSettingsDTO w) {
+    public WSettingsDTO save(WSettingsDTO w) {
         if (w != null) {
-            wSettingsRepository.save(WSettingsConverter.toDomain(w));
+            WSettingsConverter.toDTO(wSettingsRepository.save(WSettingsConverter.toDomain(w)));
         }
+        return null;
     }
 
     @Override

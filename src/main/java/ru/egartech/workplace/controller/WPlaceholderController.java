@@ -34,8 +34,8 @@ public class WPlaceholderController {
 
     @PostMapping
     public ResponseEntity<String> save(@RequestBody WPlaceholderDTO w) {
-        wPlaceholderService.save(w);
-        return ResponseEntity.ok("Added wplaceholder: " + w.toString());
+        WPlaceholderDTO newPlaceholder = wPlaceholderService.save(w);
+        return ResponseEntity.ok("Added wplaceholder: " + newPlaceholder.toString());
     }
 
     @DeleteMapping("/{id}")

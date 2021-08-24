@@ -10,7 +10,7 @@ public interface WPlaceholderService {
 
     Page<WPlaceholderDTO> getAll(Pageable page);
     Optional<WPlaceholderDTO> getById(long id);
-    void save(WPlaceholderDTO w);
+    WPlaceholderDTO save(WPlaceholderDTO w);
     void delete(long id);
     void update(WPlaceholderDTO w);
 

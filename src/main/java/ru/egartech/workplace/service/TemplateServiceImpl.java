@@ -29,10 +29,11 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public void save(TemplateDTO t) {
+    public TemplateDTO save(TemplateDTO t) {
         if (t != null) {
-            templateRepository.save(TemplateConverter.toDomain(t));
+            TemplateConverter.toDTO(templateRepository.save(TemplateConverter.toDomain(t)));
         }
+        return null;
     }
 
     @Override

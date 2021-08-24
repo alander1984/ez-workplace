@@ -10,7 +10,7 @@ public interface WSettingsService {
 
     Page<WSettingsDTO> getAll(Pageable page);
     Optional<WSettingsDTO> getById(long id);
-    void save(WSettingsDTO w);
+    WSettingsDTO save(WSettingsDTO w);
     void delete(long id);
     void update(WSettingsDTO w);
 

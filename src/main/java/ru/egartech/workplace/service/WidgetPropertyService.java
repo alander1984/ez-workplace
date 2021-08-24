@@ -10,7 +10,7 @@ public interface WidgetPropertyService {
 
     Page<WidgetPropertyDTO> getAll(Pageable page);
     Optional<WidgetPropertyDTO> getById(long id);
-    void save(WidgetPropertyDTO w);
+    WidgetPropertyDTO save(WidgetPropertyDTO w);
     void delete(long id);
     void update(WidgetPropertyDTO w);
 

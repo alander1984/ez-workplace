@@ -34,10 +34,11 @@ public class WidgetPropertyServiceImpl implements WidgetPropertyService{
     }
 
     @Override
-    public void save(WidgetPropertyDTO w) {
+    public WidgetPropertyDTO save(WidgetPropertyDTO w) {
         if (w != null) {
-            widgetPropertyRepository.save(WidgetPropertyConverter.toDomain(w));
+            WidgetPropertyConverter.toDTO(widgetPropertyRepository.save(WidgetPropertyConverter.toDomain(w)));
         }
+        return null;
     }
 
     @Override

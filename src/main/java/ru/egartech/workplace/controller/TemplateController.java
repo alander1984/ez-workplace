@@ -34,8 +34,8 @@ public class TemplateController {
 
     @PostMapping
     public ResponseEntity<String> save(@RequestBody TemplateDTO t) {
-        templateService.save(t);
-        return ResponseEntity.ok("Added template: " + t.toString());
+        TemplateDTO newTemplate = templateService.save(t);
+        return ResponseEntity.ok("Added template: " + newTemplate.toString());
     }
 
     @DeleteMapping("/{id}")

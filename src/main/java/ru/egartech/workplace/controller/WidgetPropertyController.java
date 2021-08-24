@@ -34,8 +34,8 @@ public class WidgetPropertyController {
 
     @PostMapping
     public ResponseEntity<String> save(@RequestBody WidgetPropertyDTO w) {
-        widgetPropertyService.save(w);
-        return ResponseEntity.ok("Added widget property: " + w.toString());
+        WidgetPropertyDTO newProperty = widgetPropertyService.save(w);
+        return ResponseEntity.ok("Added widget property: " + newProperty.toString());
     }
 
     @DeleteMapping("/{id}")

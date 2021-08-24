@@ -10,7 +10,7 @@ public interface WidgetService {
 
 	Page<WidgetDTO> getAll(Pageable page);
 	Optional<WidgetDTO> getById(long id);
-	void save(WidgetDTO w);
+	WidgetDTO save(WidgetDTO w);
 	void delete(long id);
 	void update(WidgetDTO w);
 

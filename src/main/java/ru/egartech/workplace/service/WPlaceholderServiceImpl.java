@@ -34,10 +34,11 @@ public class WPlaceholderServiceImpl implements WPlaceholderService {
     }
 
     @Override
-    public void save(WPlaceholderDTO w) {
+    public WPlaceholderDTO save(WPlaceholderDTO w) {
         if (w != null) {
-            wPlaceholderRepository.save(WPlaceholderConverter.toDomain(w));
+            WPlaceholderConverter.toDTO(wPlaceholderRepository.save(WPlaceholderConverter.toDomain(w)));
         }
+        return null;
     }
 
     @Override

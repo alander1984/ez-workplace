@@ -34,8 +34,8 @@ public class WSettingsController {
 
     @PostMapping
     public ResponseEntity<String> save(@RequestBody WSettingsDTO w) {
-        wSettingsService.save(w);
-        return ResponseEntity.ok("Added wplaceholder: " + w.toString());
+        WSettingsDTO newSettings = wSettingsService.save(w);
+        return ResponseEntity.ok("Added wplaceholder: " + newSettings.toString());
     }
 
     @DeleteMapping("/{id}")

@@ -35,8 +35,8 @@ public class WidgetController {
 
 	@PostMapping
 	public ResponseEntity<String> save(@RequestBody WidgetDTO w) {
-		widgetService.save(w);
-		return ResponseEntity.ok("Added widget: " + w.toString());
+		WidgetDTO newWidget = widgetService.save(w);
+		return ResponseEntity.ok("Added widget: " + newWidget.toString());
 	}
 
 	@DeleteMapping("/{id}")

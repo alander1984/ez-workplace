@@ -36,10 +36,11 @@ public class WidgetServiceImpl implements WidgetService {
 	}
 
 	@Override
-	public void save(WidgetDTO w) {
+	public WidgetDTO save(WidgetDTO w) {
 		if (w != null) {
-			widgetRepository.save(WidgetConverter.toDomain(w));
+			WidgetConverter.toDTO(widgetRepository.save(WidgetConverter.toDomain(w)));
 		}
+		return null;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public interface TemplateService {
 
     Page<TemplateDTO> getAll(Pageable page);
     Optional<TemplateDTO> getById(long id);
-    void save(TemplateDTO t);
+    TemplateDTO save(TemplateDTO t);
     void delete(long id);
     void update(TemplateDTO t);
 
