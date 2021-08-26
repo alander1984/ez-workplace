@@ -36,20 +36,20 @@ public class WSettingsServiceImpl implements WSettingsService{
     @Override
     public WSettingsDTO save(WSettingsDTO w) {
         if (w != null) {
-            WSettingsConverter.toDTO(wSettingsRepository.save(WSettingsConverter.toDomain(w)));
+            return WSettingsConverter.toDTO(wSettingsRepository.save(WSettingsConverter.toDomain(w)));
         }
         return null;
     }
 
     @Override
-    public void update(WSettingsDTO w) {
+    public WSettingsDTO update(WSettingsDTO w) {
         if (getById(w.getId()).isPresent()) {
             WSettingsDTO settings = getById(w.getId()).get();
             settings.setPropertyId(w.getPropertyId());
             settings.setPropertyId(w.getPropertyId());
             settings.setValue(w.getValue());
-            save(settings);
-        }
+            return save(settings);
+        } else throw new EntityNotFoundException();
     }
 
 }

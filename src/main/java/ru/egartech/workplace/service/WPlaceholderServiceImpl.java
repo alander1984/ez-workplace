@@ -36,19 +36,19 @@ public class WPlaceholderServiceImpl implements WPlaceholderService {
     @Override
     public WPlaceholderDTO save(WPlaceholderDTO w) {
         if (w != null) {
-            WPlaceholderConverter.toDTO(wPlaceholderRepository.save(WPlaceholderConverter.toDomain(w)));
+            return WPlaceholderConverter.toDTO(wPlaceholderRepository.save(WPlaceholderConverter.toDomain(w)));
         }
         return null;
     }
 
     @Override
-    public void update(WPlaceholderDTO w) {
+    public WPlaceholderDTO update(WPlaceholderDTO w) {
         if (getById(w.getId()).isPresent()) {
             WPlaceholderDTO wplaceholder = getById(w.getId()).get();
             wplaceholder.setWorkspaceId(w.getWorkspaceId());
             wplaceholder.setWidgetId(w.getWidgetId());
             wplaceholder.setCode(w.getCode());
-            save(wplaceholder);
-        }
+            return save(wplaceholder);
+        } else throw new EntityNotFoundException();
     }
 }

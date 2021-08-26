@@ -23,12 +23,14 @@
                                  baseColumnNames="WPLACEHOLDER_ID"
                                  constraintName="FK_WPLACEHOLDERS"
                                  referencedTableName="WPLACEHOLDERS"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
         <addForeignKeyConstraint baseTableName="WSETTINGS"
                                  baseColumnNames="PROPERTY_ID"
                                  constraintName="FK_WIDGET_PROPERTIES"
                                  referencedTableName="WIDGET_PROPERTIES"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
 
         <loadData tableName="WSETTINGS" relativeToChangelogFile="true" file="../data/wsettings.csv" encoding="UTF-8" separator=";"/>
 

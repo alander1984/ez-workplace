@@ -12,6 +12,6 @@ public interface WidgetService {
 	Optional<WidgetDTO> getById(long id);
 	WidgetDTO save(WidgetDTO w);
 	void delete(long id);
-	void update(WidgetDTO w);
+	WidgetDTO update(WidgetDTO w);
 
 }

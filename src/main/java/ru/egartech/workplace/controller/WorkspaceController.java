@@ -33,9 +33,8 @@ public class WorkspaceController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody WorkspaceDTO w) {
-        WorkspaceDTO newWorkspace = workspaceService.save(w);
-        return ResponseEntity.ok("Added workspace: " + newWorkspace.toString());
+    public ResponseEntity<WorkspaceDTO> save(@RequestBody WorkspaceDTO w) {
+        return ResponseEntity.ok(workspaceService.save(w));
     }
 
     @DeleteMapping("/{id}")
@@ -46,9 +45,7 @@ public class WorkspaceController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody WorkspaceDTO w) {
-        WorkspaceDTO oldWorkspace = workspaceService.getById(w.getId()).get();
-        workspaceService.update(w);
-        return ResponseEntity.ok("Updated workspace: " + oldWorkspace + " -> " + workspaceService.getById(w.getId()));
+    public ResponseEntity<WorkspaceDTO> update(@RequestBody WorkspaceDTO w) {
+        return ResponseEntity.ok(workspaceService.update(w));
     }
 }

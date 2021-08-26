@@ -23,7 +23,8 @@
                                  baseColumnNames="WIDGET_ID"
                                  constraintName="FK_WIDGETS2"
                                  referencedTableName="WIDGETS"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
 
         <loadData tableName="WIDGET_PROPERTIES" relativeToChangelogFile="true" file="../data/widgetproperties.csv" encoding="UTF-8" separator=";"/>
 

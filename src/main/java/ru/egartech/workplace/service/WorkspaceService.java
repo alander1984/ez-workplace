@@ -12,5 +12,5 @@ public interface WorkspaceService {
     Optional<WorkspaceDTO> getById(long id);
     WorkspaceDTO save(WorkspaceDTO w);
     void delete(long id);
-    void update(WorkspaceDTO w);
+    WorkspaceDTO update(WorkspaceDTO w);
 }

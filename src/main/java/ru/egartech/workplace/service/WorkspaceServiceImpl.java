@@ -42,12 +42,12 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void update(WorkspaceDTO w) {
+    public WorkspaceDTO update(WorkspaceDTO w) {
         if (getById(w.getId()).isPresent()) {
             WorkspaceDTO workspace = getById(w.getId()).get();
             workspace.setName(w.getName());
             workspace.setTemplateId(w.getTemplateId());
-            save(workspace);
-        }
+            return save(workspace);
+        } else throw new EntityNotFoundException();
     }
 }

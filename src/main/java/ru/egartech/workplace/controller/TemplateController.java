@@ -33,9 +33,8 @@ public class TemplateController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody TemplateDTO t) {
-        TemplateDTO newTemplate = templateService.save(t);
-        return ResponseEntity.ok("Added template: " + newTemplate.toString());
+    public ResponseEntity<TemplateDTO> save(@RequestBody TemplateDTO t) {
+        return ResponseEntity.ok(templateService.save(t));
     }
 
     @DeleteMapping("/{id}")
@@ -46,9 +45,7 @@ public class TemplateController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody TemplateDTO t) {
-        TemplateDTO oldTemplate = templateService.getById(t.getId()).get();
-        templateService.update(t);
-        return ResponseEntity.ok("Updated template: " + oldTemplate + " -> " + templateService.getById(t.getId()));
+    public ResponseEntity<TemplateDTO> update(@RequestBody TemplateDTO t) {
+        return ResponseEntity.ok(templateService.update(t));
     }
 }

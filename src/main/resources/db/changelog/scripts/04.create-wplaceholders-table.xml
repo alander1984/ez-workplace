@@ -23,12 +23,14 @@
                                  baseColumnNames="WORKSPACE_ID"
                                  constraintName="FK_WORKSPACES"
                                  referencedTableName="WORKSPACES"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
         <addForeignKeyConstraint baseTableName="WPLACEHOLDERS"
                                  baseColumnNames="WIDGET_ID"
                                  constraintName="FK_WIDGETS"
                                  referencedTableName="WIDGETS"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
 
         <loadData tableName="WPLACEHOLDERS" relativeToChangelogFile="true" file="../data/wplaceholders.csv" encoding="UTF-8" separator=";"/>
 

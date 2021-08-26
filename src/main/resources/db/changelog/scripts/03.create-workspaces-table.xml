@@ -22,7 +22,8 @@
                                  baseColumnNames="TEMPLATE_ID"
                                  constraintName="FK_TEMPLATES"
                                  referencedTableName="TEMPLATES"
-                                 referencedColumnNames="ID"/>
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
 
         <loadData tableName="WORKSPACES" relativeToChangelogFile="true" file="../data/workspaces.csv" encoding="UTF-8" separator=";"/>
 

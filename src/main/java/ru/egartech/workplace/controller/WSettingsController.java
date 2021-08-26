@@ -33,9 +33,8 @@ public class WSettingsController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody WSettingsDTO w) {
-        WSettingsDTO newSettings = wSettingsService.save(w);
-        return ResponseEntity.ok("Added wplaceholder: " + newSettings.toString());
+    public ResponseEntity<WSettingsDTO> save(@RequestBody WSettingsDTO w) {
+        return ResponseEntity.ok(wSettingsService.save(w));
     }
 
     @DeleteMapping("/{id}")
@@ -46,10 +45,8 @@ public class WSettingsController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody WSettingsDTO w) {
-        WSettingsDTO oldSettings = wSettingsService.getById(w.getId()).get();
-        wSettingsService.update(w);
-        return ResponseEntity.ok("Updated workspace: " + oldSettings + " -> " + wSettingsService.getById(w.getId()));
+    public ResponseEntity<WSettingsDTO> update(@RequestBody WSettingsDTO w) {
+        return ResponseEntity.ok(wSettingsService.update(w));
     }
 
 }

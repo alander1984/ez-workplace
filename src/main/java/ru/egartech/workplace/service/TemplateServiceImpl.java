@@ -31,7 +31,7 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public TemplateDTO save(TemplateDTO t) {
         if (t != null) {
-            TemplateConverter.toDTO(templateRepository.save(TemplateConverter.toDomain(t)));
+            return TemplateConverter.toDTO(templateRepository.save(TemplateConverter.toDomain(t)));
         }
         return null;
     }
@@ -42,14 +42,14 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public void update(TemplateDTO t) {
+    public TemplateDTO update(TemplateDTO t) {
         if (getById(t.getId()).isPresent()) {
             TemplateDTO template = getById(t.getId()).get();
             template.setCode(t.getCode());
             template.setName(t.getName());
             template.setComponent(t.getComponent());
-            save(template);
-        }
+            return save(template);
+        } else throw new EntityNotFoundException();
     }
 
 }

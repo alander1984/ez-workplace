@@ -33,9 +33,8 @@ public class WidgetPropertyController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody WidgetPropertyDTO w) {
-        WidgetPropertyDTO newProperty = widgetPropertyService.save(w);
-        return ResponseEntity.ok("Added widget property: " + newProperty.toString());
+    public ResponseEntity<WidgetPropertyDTO> save(@RequestBody WidgetPropertyDTO w) {
+        return ResponseEntity.ok(widgetPropertyService.save(w));
     }
 
     @DeleteMapping("/{id}")
@@ -46,10 +45,8 @@ public class WidgetPropertyController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody WidgetPropertyDTO w) {
-        WidgetPropertyDTO oldProperty = widgetPropertyService.getById(w.getId()).get();
-        widgetPropertyService.update(w);
-        return ResponseEntity.ok("Updated workspace: " + oldProperty + " -> " + widgetPropertyService.getById(w.getId()));
+    public ResponseEntity<WidgetPropertyDTO> update(@RequestBody WidgetPropertyDTO w) {
+        return ResponseEntity.ok(widgetPropertyService.update(w));
     }
 
 }

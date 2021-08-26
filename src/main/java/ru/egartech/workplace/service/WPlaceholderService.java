@@ -12,6 +12,6 @@ public interface WPlaceholderService {
     Optional<WPlaceholderDTO> getById(long id);
     WPlaceholderDTO save(WPlaceholderDTO w);
     void delete(long id);
-    void update(WPlaceholderDTO w);
+    WPlaceholderDTO update(WPlaceholderDTO w);
 
 }

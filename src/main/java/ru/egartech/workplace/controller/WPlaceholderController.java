@@ -33,9 +33,8 @@ public class WPlaceholderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody WPlaceholderDTO w) {
-        WPlaceholderDTO newPlaceholder = wPlaceholderService.save(w);
-        return ResponseEntity.ok("Added wplaceholder: " + newPlaceholder.toString());
+    public ResponseEntity<WPlaceholderDTO> save(@RequestBody WPlaceholderDTO w) {
+        return ResponseEntity.ok(wPlaceholderService.save(w));
     }
 
     @DeleteMapping("/{id}")
@@ -46,10 +45,8 @@ public class WPlaceholderController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody WPlaceholderDTO w) {
-        WPlaceholderDTO oldWPlaceholder = wPlaceholderService.getById(w.getId()).get();
-        wPlaceholderService.update(w);
-        return ResponseEntity.ok("Updated workspace: " + oldWPlaceholder + " -> " + wPlaceholderService.getById(w.getId()));
+    public ResponseEntity<WPlaceholderDTO> update(@RequestBody WPlaceholderDTO w) {
+        return ResponseEntity.ok(wPlaceholderService.update(w));
     }
 
 }

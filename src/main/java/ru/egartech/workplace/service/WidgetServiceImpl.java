@@ -38,20 +38,20 @@ public class WidgetServiceImpl implements WidgetService {
 	@Override
 	public WidgetDTO save(WidgetDTO w) {
 		if (w != null) {
-			WidgetConverter.toDTO(widgetRepository.save(WidgetConverter.toDomain(w)));
+			return WidgetConverter.toDTO(widgetRepository.save(WidgetConverter.toDomain(w)));
 		}
 		return null;
 	}
 
 	@Override
-	public void update(WidgetDTO w) {
+	public WidgetDTO update(WidgetDTO w) {
 		if (getById(w.getId()).isPresent()) {
 			WidgetDTO widget = getById(w.getId()).get();
 			widget.setCode(w.getCode());
 			widget.setName(w.getName());
 			widget.setComponent(w.getComponent());
-			save(widget);
-		}
+			return save(widget);
+		} else throw new EntityNotFoundException();
 	}
 
 }

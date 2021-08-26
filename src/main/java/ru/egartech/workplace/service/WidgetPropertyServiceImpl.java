@@ -36,19 +36,19 @@ public class WidgetPropertyServiceImpl implements WidgetPropertyService{
     @Override
     public WidgetPropertyDTO save(WidgetPropertyDTO w) {
         if (w != null) {
-            WidgetPropertyConverter.toDTO(widgetPropertyRepository.save(WidgetPropertyConverter.toDomain(w)));
+            return WidgetPropertyConverter.toDTO(widgetPropertyRepository.save(WidgetPropertyConverter.toDomain(w)));
         }
         return null;
     }
 
     @Override
-    public void update(WidgetPropertyDTO w) {
+    public WidgetPropertyDTO update(WidgetPropertyDTO w) {
         if (getById(w.getId()).isPresent()) {
             WidgetPropertyDTO property = getById(w.getId()).get();
             property.setParam(w.getParam());
             property.setName(w.getName());
             property.setWidgetId(w.getWidgetId());
-            save(property);
-        }
+            return save(property);
+        } else throw new EntityNotFoundException();
     }
 }

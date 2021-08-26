@@ -12,6 +12,6 @@ public interface TemplateService {
     Optional<TemplateDTO> getById(long id);
     TemplateDTO save(TemplateDTO t);
     void delete(long id);
-    void update(TemplateDTO t);
+    TemplateDTO update(TemplateDTO t);
 
 }

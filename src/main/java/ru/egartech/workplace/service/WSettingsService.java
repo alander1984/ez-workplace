@@ -12,6 +12,6 @@ public interface WSettingsService {
     Optional<WSettingsDTO> getById(long id);
     WSettingsDTO save(WSettingsDTO w);
     void delete(long id);
-    void update(WSettingsDTO w);
+    WSettingsDTO update(WSettingsDTO w);
 
 }

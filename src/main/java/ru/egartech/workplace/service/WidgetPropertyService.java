@@ -12,6 +12,6 @@ public interface WidgetPropertyService {
     Optional<WidgetPropertyDTO> getById(long id);
     WidgetPropertyDTO save(WidgetPropertyDTO w);
     void delete(long id);
-    void update(WidgetPropertyDTO w);
+    WidgetPropertyDTO update(WidgetPropertyDTO w);
 
 }
