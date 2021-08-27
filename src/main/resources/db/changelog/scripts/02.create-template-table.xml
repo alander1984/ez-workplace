@@ -5,7 +5,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet author="lanretipmes" id="lanretipmes_002_create_template_table">
-        <createSequence sequenceName="TEMPLATES_SEQUENCE" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="TEMPLATES_SEQUENCE" startValue="2" incrementBy="1"/>
         <createTable remarks="???????" tableName="TEMPLATES">
             <column name="ID"                               type="bigint"
                     defaultValueComputed="nextval('TEMPLATES_SEQUENCE')">
