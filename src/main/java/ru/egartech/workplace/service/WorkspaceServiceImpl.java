@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.egartech.workplace.converter.WPlaceholderConverter;
 import ru.egartech.workplace.converter.WorkspaceConverter;
+import ru.egartech.workplace.domain.TemplatePlaceholder;
 import ru.egartech.workplace.dto.TemplateDTO;
 import ru.egartech.workplace.dto.WPlaceholderDTO;
 import ru.egartech.workplace.dto.WorkspaceDTO;
@@ -20,12 +21,12 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     private final WorkspaceRepository workspaceRepository;
     private final WPlaceholderServiceImpl placeholderService;
-    private final TemplateServiceImpl templateService;
+    private final TemplatePlaceholderServiceImpl templatePlaceholderService;
 
-    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository, WPlaceholderServiceImpl placeholderService, TemplateServiceImpl templateService) {
+    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository, WPlaceholderServiceImpl placeholderService, TemplatePlaceholderServiceImpl templatePlaceholderService) {
         this.workspaceRepository = workspaceRepository;
         this.placeholderService = placeholderService;
-        this.templateService = templateService;
+        this.templatePlaceholderService = templatePlaceholderService;
     }
 
     @Override
@@ -48,11 +49,9 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     public WorkspaceDTO save(WorkspaceDTO w) {
         if (w != null) {
             WorkspaceDTO newWorkplace = WorkspaceConverter.toDTO(workspaceRepository.save(WorkspaceConverter.toDomain(w)));
-            TemplateDTO template = (templateService.getById(newWorkplace.getTemplateId()).get());
-            String[] dimensions = template.getComponent().split("[-x]");
-            int size = Integer.parseInt(dimensions[1]) * Integer.parseInt(dimensions[2]);
-            for (int i = 0; i < size; i++) {
-                placeholderService.save(new WPlaceholderDTO(0L, newWorkplace.getId(), 0L, ""));
+            TemplatePlaceholder[] templatePlaceholders = templatePlaceholderService.getByTemplateId(newWorkplace.getTemplateId());
+            for (TemplatePlaceholder templatePlaceholder : templatePlaceholders) {
+                placeholderService.save(new WPlaceholderDTO(0L, newWorkplace.getId(), 0L, templatePlaceholder.getCode()));
             }
             return newWorkplace;
         }

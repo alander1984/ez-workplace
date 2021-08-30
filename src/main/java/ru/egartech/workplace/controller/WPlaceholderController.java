@@ -32,10 +32,10 @@ public class WPlaceholderController {
         return ResponseEntity.ok(wPlaceholderService.getById(id).get());
     }
 
-    @PostMapping
-    public ResponseEntity<WPlaceholderDTO> save(@RequestBody WPlaceholderDTO w) {
-        return ResponseEntity.ok(wPlaceholderService.save(w));
-    }
+//    @PostMapping
+//    public ResponseEntity<WPlaceholderDTO> save(@RequestBody WPlaceholderDTO w) {
+//        return ResponseEntity.ok(wPlaceholderService.save(w));
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {

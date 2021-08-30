@@ -9,5 +9,6 @@
     <include file="scripts/04.create-wplaceholders-table.xml" relativeToChangelogFile="true"/>
     <include file="scripts/05.create-widgetproperties-table.xml" relativeToChangelogFile="true"/>
     <include file="scripts/06.create-wsettings-table.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/07.create-template-placeholders-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
