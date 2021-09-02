@@ -9,6 +9,7 @@ import ru.egartech.workplace.domain.TemplatePlaceholder;
 import ru.egartech.workplace.dto.TemplateDTO;
 import ru.egartech.workplace.dto.WPlaceholderDTO;
 import ru.egartech.workplace.dto.WorkspaceDTO;
+import ru.egartech.workplace.repo.TemplatePlaceholderRepository;
 import ru.egartech.workplace.repo.WPlaceholderRepository;
 import ru.egartech.workplace.repo.WorkspaceRepository;
 
@@ -21,12 +22,12 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     private final WorkspaceRepository workspaceRepository;
     private final WPlaceholderServiceImpl placeholderService;
-    private final TemplatePlaceholderServiceImpl templatePlaceholderService;
+    private final TemplatePlaceholderRepository templatePlaceholderRepository;
 
-    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository, WPlaceholderServiceImpl placeholderService, TemplatePlaceholderServiceImpl templatePlaceholderService) {
+    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository, WPlaceholderServiceImpl placeholderService, TemplatePlaceholderRepository templatePlaceholderRepository) {
         this.workspaceRepository = workspaceRepository;
         this.placeholderService = placeholderService;
-        this.templatePlaceholderService = templatePlaceholderService;
+        this.templatePlaceholderRepository = templatePlaceholderRepository;
     }
 
     @Override
@@ -49,8 +50,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     public WorkspaceDTO save(WorkspaceDTO w) {
         if (w != null) {
             WorkspaceDTO newWorkplace = WorkspaceConverter.toDTO(workspaceRepository.save(WorkspaceConverter.toDomain(w)));
-            TemplatePlaceholder[] templatePlaceholders = templatePlaceholderService.getByTemplateId(newWorkplace.getTemplateId());
-            for (TemplatePlaceholder templatePlaceholder : templatePlaceholders) {
+            for (TemplatePlaceholder templatePlaceholder : templatePlaceholderRepository.getByTemplateId(newWorkplace.getTemplateId())) {
                 placeholderService.save(new WPlaceholderDTO(0L, newWorkplace.getId(), 0L, templatePlaceholder.getCode()));
             }
             return newWorkplace;
